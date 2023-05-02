@@ -1,4 +1,7 @@
 <script setup>
+import { defineProps } from "vue";
+import ToDo from "./ToDo.vue";
+
 defineProps({
   tasks: Array,
   title: String,
@@ -10,16 +13,7 @@ defineProps({
     <h2 class="my-2 font-bold text-gray-800 text-center">{{ title }}</h2>
     <div>
       <ul class="divide-y divide-blue-200 hover:divide-blue-300 space-y-2">
-        <li v-for="task in tasks" :key="task.id">
-          <label :class="[{ 'line-through text-gray-300 ': task.completed }]">
-            <input
-              type="checkbox"
-              v-model="task.completed"
-              class="checked:bg-blue-500"
-            />
-            <span class="ms-2"> {{ task.label }}</span>
-          </label>
-        </li>
+        <ToDo v-for="task in tasks" :key="task.id" :task="task" />
       </ul>
     </div>
   </section>
