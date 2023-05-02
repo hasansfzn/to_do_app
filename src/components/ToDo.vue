@@ -22,13 +22,15 @@ const deleteTask = () => {
           v-model="task.completed"
           class="checked:bg-blue-500"
         />
-        <span class="ms-2"> {{ task.label }}</span>
+        <span class="ms-2" :class="[{ 'text-rose-500': task.deleted }]">
+          {{ task.label }}</span
+        >
       </div>
       <button
         v-show="!task.deleted"
         :class="[
           {
-            'ms-2 mt-1 bg-rose-700 hover:bg-rose-500 text-gray-700 font-semibold py-1 px-2 border border-gray-400 rounded-lg shadow': true,
+            'ms-2 mt-1 bg-rose-300 hover:bg-rose-400 text-gray-700 font-semibold py-1 px-2 border border-gray-400 rounded-lg shadow': true,
           },
         ]"
         @click="deleteTask"
