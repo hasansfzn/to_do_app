@@ -25,10 +25,11 @@ const inCompleted = computed(() => {
     >
       To Do Application
     </h2>
-    <div class="grid grid-cols-2 gap-4 mt-4 pt-2">
+    <div class="grid grid-cols-2 gap-4 mt-4 mb-3 pb-2 pt-2">
       <ToDoList :tasks="inCompleted" title="Incomplete Tasks" />
       <ToDoList :tasks="completed" title="Complete Tasks" />
     </div>
+    <div></div>
   </section>
 </template>
 
