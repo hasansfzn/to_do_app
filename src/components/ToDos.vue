@@ -26,9 +26,9 @@ const addTask = (name) => {
   });
 };
 
-// const deleteTask = (indx) => {
-//   toDos.value = toDos.value.splice(indx, 1);
-// };
+const deleteTask = (indx) => {
+  toDos.value = toDos.value.splice(indx, 1);
+};
 </script>
 
 <template>
