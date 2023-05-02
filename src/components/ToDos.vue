@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import ToDoList from "./ToDoList.vue";
 import TaskAddForm from "./TaskAddForm.vue";
 
-const toDos = ref([
+let toDos = ref([
   { id: 1, label: "Read Vue Docs", completed: false },
   { id: 2, label: "Learn Reactivity", completed: false },
   { id: 3, label: "Learn Ref and Js Proxy", completed: false },
@@ -25,6 +25,10 @@ const addTask = (name) => {
     completed: false,
   });
 };
+
+// const deleteTask = (indx) => {
+//   toDos.value = toDos.value.splice(indx, 1);
+// };
 </script>
 
 <template>
@@ -40,6 +44,9 @@ const addTask = (name) => {
     </div>
     <div>
       <TaskAddForm @addTask="addTask" />
+    </div>
+    <div class="mt-4 pt-2">
+      <ToDoList :tasks="deleted" title="Deleted Tasks" />
     </div>
   </section>
 </template>
