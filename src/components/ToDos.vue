@@ -10,11 +10,11 @@ const toDos = ref([
 ]);
 
 const completed = computed(() => {
-  return toDos.filter((todo) => todo.completed);
+  return toDos.value.filter((todo) => todo.completed);
 });
 
 const inCompleted = computed(() => {
-  return toDos.fileter((todo) => !todo.completed);
+  return toDos.value.filter((todo) => !todo.completed);
 });
 </script>
 
