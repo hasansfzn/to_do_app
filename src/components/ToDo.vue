@@ -3,6 +3,10 @@ import { defineProps } from "vue";
 const props = defineProps({
   task: Object,
 });
+
+const deleteTask = () => {
+  props.task.deleted = true;
+};
 </script>
 
 <template>
