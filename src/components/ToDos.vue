@@ -17,6 +17,14 @@ const completed = computed(() => {
 const inCompleted = computed(() => {
   return toDos.value.filter((todo) => !todo.completed);
 });
+
+const addTask = (name) => {
+  toDos.value.push({
+    id: toDos.value.length + 1,
+    label: name,
+    completed: false,
+  });
+};
 </script>
 
 <template>
@@ -31,7 +39,7 @@ const inCompleted = computed(() => {
       <ToDoList :tasks="completed" title="Complete Tasks" />
     </div>
     <div>
-      <TaskAddForm :assignments="assignments" />
+      <TaskAddForm @addTask="addTask" />
     </div>
   </section>
 </template>
