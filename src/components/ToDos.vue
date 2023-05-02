@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import ToDoList from "./ToDoList.vue";
+import TaskAddForm from "./TaskAddForm.vue";
 
 const toDos = ref([
   { id: 1, label: "Read Vue Docs", completed: false },
@@ -29,7 +30,9 @@ const inCompleted = computed(() => {
       <ToDoList :tasks="inCompleted" title="Incomplete Tasks" />
       <ToDoList :tasks="completed" title="Complete Tasks" />
     </div>
-    <div></div>
+    <div>
+      <TaskAddForm :assignments="assignments" />
+    </div>
   </section>
 </template>
 
