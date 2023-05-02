@@ -4,18 +4,22 @@ import ToDoList from "./ToDoList.vue";
 import TaskAddForm from "./TaskAddForm.vue";
 
 let toDos = ref([
-  { id: 1, label: "Read Vue Docs", completed: false },
-  { id: 2, label: "Learn Reactivity", completed: false },
-  { id: 3, label: "Learn Ref and Js Proxy", completed: false },
-  { id: 4, label: "Practice Dummy Project", completed: false },
+  { id: 1, label: "Read Vue Docs", completed: false, deleted: false },
+  { id: 2, label: "Learn Reactivity", completed: false, deleted: false },
+  { id: 3, label: "Learn Ref and Js Proxy", completed: false, deleted: false },
+  { id: 4, label: "Practice Dummy Project", completed: false, deleted: false },
 ]);
 
 const completed = computed(() => {
-  return toDos.value.filter((todo) => todo.completed);
+  return toDos.value.filter((todo) => todo.completed && !todo.deleted);
 });
 
 const inCompleted = computed(() => {
-  return toDos.value.filter((todo) => !todo.completed);
+  return toDos.value.filter((todo) => !todo.completed && !todo.deleted);
+});
+
+const deletedTasks = computed(() => {
+  return toDos.value.filter((todo) => todo.deleted);
 });
 
 const addTask = (name) => {
@@ -23,12 +27,13 @@ const addTask = (name) => {
     id: toDos.value.length + 1,
     label: name,
     completed: false,
+    deleted: false,
   });
 };
 
-// const deleteTask = (indx) => {
-//   toDos.value = toDos.value.splice(indx, 1);
-// };
+const deleteTask = (indx) => {
+  toDos.value = toDos.value.splice(indx, 1);
+};
 </script>
 
 <template>
@@ -46,7 +51,7 @@ const addTask = (name) => {
       <TaskAddForm @addTask="addTask" />
     </div>
     <div class="mt-4 pt-2">
-      <ToDoList :tasks="deleted" title="Deleted Tasks" />
+      <ToDoList :tasks="deletedTasks" title="Deleted Tasks" />
     </div>
   </section>
 </template>

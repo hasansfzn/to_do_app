@@ -15,7 +15,7 @@ const addTask = () => {
     <input
       type="text"
       v-model="newTask"
-      class="p-2 bg-white text-gray-700 shadow-sm shadow-slate-300"
+      class="p-2 bg-white text-gray-700 shadow-sm shadow-slate-300 focus:outline-none"
       placeholder="Enter New Task"
     />
     <button
