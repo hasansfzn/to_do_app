@@ -34,7 +34,7 @@ const editName = () => {
           <input
             type="text"
             :placeholder="task.label"
-            class="bg-transparent"
+            class="bg-transparent focus:outline-none"
             :disabled="!editing"
             :autofocus="editing"
             v-model="task.label"
