@@ -1,9 +1,9 @@
 <script setup>
-import ToDos from "./components/ToDos.vue";
+import Home from "./pages/Home.vue";
 </script>
 
 <template>
-  <ToDos />
+  <Home />
 </template>
 
 <style scoped></style>
