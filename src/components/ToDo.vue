@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, computed, vModelCheckbox } from "vue";
 const props = defineProps({
   task: Object,
 });
@@ -23,9 +23,10 @@ const deleteTask = () => {
           class="checked:bg-blue-500"
         />
         <span class="ms-2" :class="[{ 'text-rose-500': task.deleted }]">
-          {{ task.label }}</span
-        >
+          {{ task.label }}
+        </span>
       </div>
+
       <button
         v-show="!task.deleted"
         :class="[

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
-import ToDoList from "./ToDoList.vue";
-import TaskAddForm from "./TaskAddForm.vue";
+import ToDoList from "../components/ToDoList.vue";
+import TaskAddForm from "../components/TaskAddForm.vue";
 
 let toDos = ref([
   { id: 1, label: "Read Vue Docs", completed: false, deleted: false },
