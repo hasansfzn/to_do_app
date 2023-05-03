@@ -5,7 +5,8 @@ const props = defineProps({
 });
 
 const deleteTask = () => {
-  props.task.deleted = true;
+  const res = confirm("Are you sure to delete the task?");
+  if (res) props.task.deleted = true;
 };
 </script>
 

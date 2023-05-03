@@ -31,12 +31,12 @@ const addTask = (name) => {
   });
 };
 
-const deleteTask = (indx) => {
-  const res = cofirm("Are you sure to delete?");
-  if (res) {
-    toDos.value = toDos.value.splice(indx, 1);
-  }
-};
+// const deleteTask = (indx) => {
+//   const res = cofirm("Are you sure to delete?");
+//   if (res) {
+//     toDos.value = toDos.value.splice(indx, 1);
+//   }
+// };
 </script>
 
 <template>
