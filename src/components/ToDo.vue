@@ -24,23 +24,27 @@ const editName = () => {
       class="flex justify-between items-center"
     >
       <div>
+        <!-- checkbox  -->
         <input
           v-show="!task.deleted"
           type="checkbox"
           v-model="task.completed"
           class="checked:bg-blue-500"
         />
+        <!-- task name  -->
         <span class="ms-2" :class="[{ 'text-rose-500': task.deleted }]">
+          {{ editing }}
           <input
             type="text"
             :placeholder="task.label"
-            class="bg-transparent focus:outline-none"
+            class="bg-transparent focus:outline-gray-300 border-none"
             :disabled="!editing"
-            :autofocus="editing"
+            autofocus
             v-model="task.label"
           />
         </span>
       </div>
+      <!-- action button  -->
 
       <button
         v-show="!task.deleted"
@@ -53,6 +57,7 @@ const editName = () => {
       >
         X
       </button>
+
       <button
         class="ms-1 bg-blue-300 hover:bg-blue-400 px-2 py-2 mt-1 border border-gray-400 rounded-lg shadow"
         @click="editName"
