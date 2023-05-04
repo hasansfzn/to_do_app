@@ -51,7 +51,7 @@ const taskCompeteToggle = () => {
           :placeholder="task.label"
           :class="[
             { 'text-rose-500': task.deleted },
-            { 'line-through text-gray-300 ': task.completed },
+            { 'line-through text-gray-400 ': task.completed },
             { 'bg-transparent focus:outline-gray-300 ms-2': true },
           ]"
           :disabled="!editing"
