@@ -21,7 +21,7 @@ const handleEdit = () => {
 };
 
 const textLength = computed(() => {
-  return props.task.label.length * 9;
+  return props.task.label?.length * 10 ?? 40;
 });
 </script>
 
