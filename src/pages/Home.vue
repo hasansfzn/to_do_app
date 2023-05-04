@@ -14,8 +14,8 @@ const toDos = ref([
 ]);
 
 watchEffect(() => {
-  if (localStorage.getItem("tasks")) {
-    toDos.value = [...JSON.parse(localStorage.getItem("tasks"))];
+  if (sessionStorage.getItem("tasks")) {
+    toDos.value = [...JSON.parse(sessionStorage.getItem("tasks"))];
   } else {
     saveDataToLocal(toDos.value);
   }

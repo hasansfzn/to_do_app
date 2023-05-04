@@ -1,12 +1,12 @@
 const utils = {};
 
 utils.saveDataToLocal = (tasks) => {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  sessionStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 utils.getDataFromLocal = () => {
-  if (localStorage.getItem("tasks")) {
-    return JSON.parse(localStorage.getItem("tasks"));
+  if (sessionStorage.getItem("tasks")) {
+    return JSON.parse(sessionStorage.getItem("tasks"));
   }
   return [];
 };
