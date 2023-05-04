@@ -23,11 +23,17 @@ const handleEdit = () => {
 const textLength = computed(() => {
   return props.task.label?.length * 10 ?? 40;
 });
+
+const taskCompeteToggle = () => {
+  if (!props.task.deleted) {
+    props.task.completed = !props.task.completed;
+  }
+};
 </script>
 
 <template>
-  <li class="flex justify-between items-center">
-    <div>
+  <li class="flex items-center justify-between">
+    <label>
       <!-- checkbox  -->
       <input
         :id="'taskName' + task.id"
@@ -36,27 +42,26 @@ const textLength = computed(() => {
         v-model="task.completed"
         class="checked:bg-blue-500"
       />
-      <label :for="'taskName' + task.id">
-        <span class="p-1">
-          <!-- task name  -->
-          <input
-            :style="{ width: textLength + 'px' }"
-            ref="editInput"
-            type="text"
-            :placeholder="task.label"
-            :class="[
-              { 'text-rose-500': task.deleted },
-              { 'line-through text-gray-300 ': task.completed },
-              { 'bg-transparent focus:outline-gray-300 ms-2': true },
-            ]"
-            :disabled="!editing"
-            v-model="task.label"
-            @keydown.enter="editing = false"
-            @focusout="editing = false"
-          />
-        </span>
-      </label>
-    </div>
+      <span class="p-1" @click="taskCompeteToggle">
+        <!-- task name  -->
+        <input
+          :style="{ width: textLength + 'px' }"
+          ref="editInput"
+          type="text"
+          :placeholder="task.label"
+          :class="[
+            { 'text-rose-500': task.deleted },
+            { 'line-through text-gray-300 ': task.completed },
+            { 'bg-transparent focus:outline-gray-300 ms-2': true },
+          ]"
+          :disabled="!editing"
+          v-model="task.label"
+          @keydown.enter="editing = false"
+          @focusout="editing = false"
+        />
+      </span>
+    </label>
+
     <!-- action button  -->
     <div>
       <button

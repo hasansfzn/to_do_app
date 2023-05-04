@@ -15,12 +15,12 @@ const addTask = () => {
     <input
       type="text"
       v-model="newTask"
-      class="p-2 bg-white text-gray-700 shadow-sm shadow-slate-300 focus:outline-none"
+      class="p-2 bg-white text-gray-700 focus:outline-none shadow-lg shadow-gray-500/50"
       placeholder="Enter New Task"
     />
     <button
       type="submit"
-      class="p-2 bg-white border-l-4 border-indigo-500 shadow-sm shadow-slate-300"
+      class="p-2 bg-white border-l-4 border-indigo-500 shadow-lg shadow-gray-500/50"
       :disabled="!newTask.length"
     >
       Add
