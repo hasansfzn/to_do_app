@@ -26,7 +26,7 @@ const textLength = computed(() => {
 </script>
 
 <template>
-  <li class="flex justify-between items-center">
+  <li class="flex items-center justify-between">
     <div>
       <!-- checkbox  -->
       <input
