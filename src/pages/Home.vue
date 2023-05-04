@@ -4,7 +4,7 @@ import utils from "../utils/utils.js";
 import ToDoList from "../components/ToDoList.vue";
 import TaskAddForm from "../components/TaskAddForm.vue";
 
-const { saveDataToLocal } = utils;
+const { saveDataToLocal, set } = utils;
 
 const toDos = ref([
   { id: 1, label: "Read Vue Docs", completed: false, deleted: false },
@@ -21,37 +21,13 @@ watchEffect(() => {
   }
 });
 
-/*
-
-
-    setFormValues(values);
-    //to local storage
-    saveDataToLocal({ ...formData, ...values });
-
-
-      const setFormValues = (values) => {
-    setFormData((previousValues) => ({
-      ...previousValues,
-      ...values,
-    }));
-  };
-
-      useEffect(() => {
-    if (localStorage.getItem('formData')) {
-      // console.log(localStorage.getItem('formData'));
-
-      const dataFromLocalStorage = JSON.parse(
-        decrypt(localStorage.getItem('formData'))
-      );
-
-      if (dataFromLocalStorage) {
-        // console.log(dataFromLocalStorage, 'decrypted');
-        setFormValues(dataFromLocalStorage);
-      }
-    }
-
-
-*/
+watch(
+  toDos,
+  (newVal) => {
+    saveDataToLocal(newVal);
+  },
+  { deep: true }
+);
 
 const completed = computed(() => {
   return toDos.value.filter((todo) => todo.completed && !todo.deleted);
