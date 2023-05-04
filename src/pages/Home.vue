@@ -13,14 +13,13 @@ const toDos = ref([
   { id: 4, label: "Practice Dummy Project", completed: false, deleted: false },
 ]);
 
-// watchEffect(() => {
-//   console.log(toDos.value);
-//   if (localStorage.getItem("tasks")) {
-//     toDos.value = [...toDos.value, JSON.parse(localStorage.getItem("tasks"))];
-//   } else {
-//     saveDataToLocal(toDos.value);
-//   }
-// });
+watchEffect(() => {
+  if (localStorage.getItem("tasks")) {
+    toDos.value = [...JSON.parse(localStorage.getItem("tasks"))];
+  } else {
+    saveDataToLocal(toDos.value);
+  }
+});
 
 /*
 
@@ -73,6 +72,7 @@ const addTask = (name) => {
     completed: false,
     deleted: false,
   });
+  saveDataToLocal(toDos.value);
 };
 </script>
 
