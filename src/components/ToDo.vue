@@ -27,10 +27,7 @@ const textLength = computed(() => {
 
 <template>
   <li>
-    <label
-      :class="[{ 'line-through text-gray-300 ': task.completed }]"
-      class="flex justify-between items-center"
-    >
+    <label class="flex justify-between items-center">
       <div>
         <!-- checkbox  -->
         <input
@@ -46,7 +43,10 @@ const textLength = computed(() => {
             ref="editInput"
             type="text"
             :placeholder="task.label"
-            class="bg-transparent focus:outline-gray-300"
+            :class="[
+              { 'line-through text-gray-300 ': task.completed },
+              { 'bg-transparent focus:outline-gray-300': true },
+            ]"
             :disabled="!editing"
             v-model="task.label"
             @keydown.enter="editing = false"
@@ -69,6 +69,7 @@ const textLength = computed(() => {
         </button>
 
         <button
+          v-show="!task.deleted"
           class="ms-1 bg-blue-300 hover:bg-blue-400 px-2 py-2 mt-1 border border-gray-400 rounded-lg shadow"
           @click="handleEdit"
         >
