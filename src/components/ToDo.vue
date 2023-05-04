@@ -42,11 +42,11 @@ const textLength = computed(() => {
         <!-- task name  -->
         <span class="ms-2" :class="[{ 'text-rose-500': task.deleted }]">
           <input
+            :style="{ width: textLength + 'px' }"
             ref="editInput"
             type="text"
             :placeholder="task.label"
             class="bg-transparent focus:outline-gray-300"
-            :style="{ width: textLength + 'px' }"
             :disabled="!editing"
             v-model="task.label"
             @keydown.enter="editing = false"
