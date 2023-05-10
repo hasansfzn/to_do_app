@@ -1,11 +1,14 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
 import ToDo from "./ToDo.vue";
+import ToDoTags from "./ToDoTags.vue";
 
 defineProps({
   tasks: Array,
   title: String,
 });
+
+const seletedTag = ref("All");
 </script>
 
 <template>
@@ -14,6 +17,12 @@ defineProps({
     <p v-show="!tasks.length" class="text-gray-700 text-semibold text-center">
       No {{ title.toLocaleLowerCase() }} to show
     </p>
+
+    <!-- tag component  -->
+    <ToDoTags
+      :initalTags="tasks.map((task) => task.tag)"
+      v-model="selectedTag"
+    />
     <div>
       <ul class="divide-y divide-blue-200 hover:divide-blue-300 space-y-2">
         <ToDo
