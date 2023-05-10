@@ -1,14 +1,24 @@
 <script setup>
-import { defineProps, ref } from "vue";
+import { defineProps, ref, computed } from "vue";
 import ToDo from "./ToDo.vue";
 import ToDoTags from "./ToDoTags.vue";
 
-defineProps({
+const props = defineProps({
   tasks: Array,
   title: String,
 });
 
-const seletedTag = ref("All");
+const selectedTag = ref("All");
+
+const seletedTasks = computed(() => {
+  if (selectedTag.value === "All") {
+    return props.tasks;
+  }
+  return props.tasks.filter((task) => task.tag === selectedTag.value);
+});
+console.log(props.tasks);
+
+console.log(seletedTasks.value, "selected");
 </script>
 
 <template>
@@ -19,14 +29,16 @@ const seletedTag = ref("All");
     </p>
 
     <!-- tag component  -->
-    <ToDoTags
-      :initalTags="tasks.map((task) => task.tag)"
-      v-model="selectedTag"
-    />
+    <div v-if="tasks.length">
+      <ToDoTags
+        :initialTags="tasks.map((task) => task.tag)"
+        v-model="selectedTag"
+      />
+    </div>
     <div>
       <ul class="divide-y divide-blue-200 hover:divide-blue-300 space-y-2">
         <ToDo
-          v-for="task in tasks"
+          v-for="task in seletedTasks"
           :key="task.id"
           :task="task"
           :title="title"
