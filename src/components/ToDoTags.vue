@@ -1,13 +1,15 @@
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, computed } from "vue";
 const props = defineProps({
   initialTags: Array,
   selectedTag: String,
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:selectedTag"]);
 
-const tags = ["All", ...new Set(props.initialTags)];
+const tags = computed(() => {
+  return ["All", ...new Set(props.initialTags)];
+});
 // console.log(props.selectedTag);
 </script>
 
@@ -21,7 +23,7 @@ const tags = ["All", ...new Set(props.initialTags)];
         'focus:ring-gray-200': selectedTag === tag,
       },
     ]"
-    @click="emit('update:modelValue', tag)"
+    @click="emit('update:selectedTag', tag)"
   >
     {{ tag }}
   </button>

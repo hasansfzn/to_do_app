@@ -10,15 +10,19 @@ const props = defineProps({
 
 const selectedTag = ref("All");
 
-const seletedTasks = computed(() => {
+const selectedTasks = computed(() => {
   if (selectedTag.value === "All") {
+    return props.tasks;
+  }
+  const s_tasks = props.tasks.filter((tsk) => tsk.tag === selectedTag.value);
+  if (!s_tasks.length) {
     return props.tasks;
   }
   return props.tasks.filter((task) => task.tag === selectedTag.value);
 });
 console.log(props.tasks);
 
-console.log(seletedTasks.value, "selected");
+console.log(selectedTasks.value, "selected");
 </script>
 
 <template>
@@ -32,13 +36,13 @@ console.log(seletedTasks.value, "selected");
     <div v-if="tasks.length">
       <ToDoTags
         :initialTags="tasks.map((task) => task.tag)"
-        v-model="selectedTag"
+        v-model:selectedTag="selectedTag"
       />
     </div>
     <div>
       <ul class="divide-y divide-blue-200 hover:divide-blue-300 space-y-2">
         <ToDo
-          v-for="task in seletedTasks"
+          v-for="task in selectedTasks"
           :key="task.id"
           :task="task"
           :title="title"
