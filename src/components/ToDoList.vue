@@ -20,9 +20,6 @@ const selectedTasks = computed(() => {
   }
   return props.tasks.filter((task) => task.tag === selectedTag.value);
 });
-console.log(props.tasks);
-
-console.log(selectedTasks.value, "selected");
 </script>
 
 <template>
