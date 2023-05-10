@@ -33,13 +33,13 @@ const addTaskTextWidth = computed(() => {
     <input
       type="text"
       v-model="newTask"
-      class="p-2 bg-white text-gray-700 focus:outline-none shadow-lg shadow-gray-500/50"
+      class="p-2 bg-white text-gray-700 focus:outline-none shadow-lg shadow-gray-500/50 w-2/4"
       placeholder="Enter New Task"
     />
     <input
       :class="[
         {
-          'p-2 bg-white text-gray-700 focus:outline-none shadow-lg shadow-gray-500/50 border-l-4 border-indigo-500 w-1/5': true,
+          'p-2 bg-white text-gray-700 focus:outline-none shadow-lg shadow-gray-500/50 border-l-4 border-indigo-500 w-40': true,
         },
       ]"
       type="text"
