@@ -9,6 +9,10 @@ const emit = defineEmits(["addTask", "inputtedTag"]);
 const newTask = ref("");
 const inputtedTag = ref("");
 
+const tags = computed(() => {
+  return [...new Set(props.initialTags)];
+});
+
 const addTask = () => {
   emit("addTask", newTask.value, inputtedTag.value);
   newTask.value = "";
@@ -19,11 +23,9 @@ const taskAdditionCondition = computed(() => {
   return inputtedTag.value.length > 0 && newTask.value.length;
 });
 
-watch(taskAdditionCondition, () => {
-  console.log(taskAdditionCondition.value);
+const addTaskTextWidth = computed(() => {
+  return newTask.value.length * 10 ?? 40;
 });
-
-const tags = [...new Set(props.initialTags)];
 </script>
 
 <template>
@@ -34,7 +36,23 @@ const tags = [...new Set(props.initialTags)];
       class="p-2 bg-white text-gray-700 focus:outline-none shadow-lg shadow-gray-500/50"
       placeholder="Enter New Task"
     />
-    <select
+    <input
+      :class="[
+        {
+          'p-2 bg-white text-gray-700 focus:outline-none shadow-lg shadow-gray-500/50 border-l-4 border-indigo-500 w-1/5': true,
+        },
+      ]"
+      type="text"
+      placeholder="Enter/Select Tag"
+      v-model="inputtedTag"
+      :list="tags"
+    />
+    <datalist :id="tags">
+      <option v-for="tag in tags" :value="tag" :key="tag">
+        {{ tag }}
+      </option>
+    </datalist>
+    <!-- <select
       name="select_tag"
       id="select_tag"
       v-model="inputtedTag"
@@ -44,15 +62,20 @@ const tags = [...new Set(props.initialTags)];
         },
       ]"
     >
-      <option :value="inputtedTag" disabled selected>Select Tag</option>
+      <option value="" disabled selected>Select Tag</option>
       <option v-for="tag in tags" :value="tag" :key="tag">
         {{ tag }}
       </option>
-    </select>
+    </select> -->
     <button
       type="submit"
-      class="p-2 bg-white border-l-4 border-indigo-500 shadow-lg shadow-gray-500/50"
-      :disabled="!(inputtedTag.length > 0 && newTask.length)"
+      :class="[
+        {
+          'p-2 bg-white border-l-4 border-indigo-500 shadow-lg shadow-gray-500/50': true,
+          'cursor-not-allowed opacity-75': !taskAdditionCondition,
+        },
+      ]"
+      :disabled="!taskAdditionCondition"
     >
       Add
     </button>
