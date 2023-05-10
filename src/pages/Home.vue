@@ -72,12 +72,13 @@ const deletedTasks = computed(() => {
   return toDos.value.filter((todo) => todo.deleted);
 });
 
-const addTask = (name) => {
+const addTask = (name, tag) => {
   toDos.value.push({
     id: toDos.value.length + 1,
     label: name,
     completed: false,
     deleted: false,
+    tag: tag,
   });
   saveDataToLocal(toDos.value);
 };
@@ -96,7 +97,10 @@ const addTask = (name) => {
       <ToDoList :tasks="completed" title="Complete Tasks" />
     </div>
     <div>
-      <TaskAddForm @addTask="addTask" />
+      <TaskAddForm
+        @addTask="addTask"
+        :initialTags="toDos.map((todo) => todo.tag)"
+      />
     </div>
     <div class="mt-4 pt-2">
       <ToDoList :tasks="deletedTasks" title="Deleted Tasks" />
