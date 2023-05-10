@@ -7,10 +7,41 @@ import TaskAddForm from "../components/TaskAddForm.vue";
 const { saveDataToLocal, set } = utils;
 
 const toDos = ref([
-  { id: 1, label: "Read Vue Docs", completed: false, deleted: false },
-  { id: 2, label: "Learn Reactivity", completed: false, deleted: false },
-  { id: 3, label: "Learn Ref and Js Proxy", completed: false, deleted: false },
-  { id: 4, label: "Practice Dummy Project", completed: false, deleted: false },
+  {
+    id: 1,
+    label: "Read Vue Docs",
+    completed: false,
+    deleted: false,
+    tag: "Vue",
+  },
+  {
+    id: 2,
+    label: "Learn Reactivity",
+    completed: false,
+    deleted: false,
+    tag: "Vue",
+  },
+  {
+    id: 3,
+    label: "Learn Ref and Js Proxy",
+    completed: false,
+    deleted: false,
+    tag: "Vue",
+  },
+  {
+    id: 4,
+    label: "Practice Dummy Project",
+    completed: false,
+    deleted: false,
+    tag: "Git",
+  },
+  {
+    id: 5,
+    label: "JavaScript Practice",
+    completed: false,
+    deleted: false,
+    tag: "JS",
+  },
 ]);
 
 watchEffect(() => {
