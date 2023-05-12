@@ -108,7 +108,7 @@ const toggleHideDeletedList = () => {
       />
     </div>
     <div class="mt-4 pt-2">
-      <Transition name="fade-button">
+      <Transition name="fade">
         <button
           v-if="hideList"
           @click="toggleHideDeletedList"
