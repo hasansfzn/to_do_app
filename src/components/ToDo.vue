@@ -46,7 +46,7 @@ const swalConfirm = (taskMsg) => {
   Swal.fire({
     position: "top-end",
     icon: "success",
-    title: `Task: ${props.task.label} is completed.`,
+    title: `Task: ${props.task.label} is edited.`,
     showConfirmButton: false,
     toast: true,
     timer: 1500,
