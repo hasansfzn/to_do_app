@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, nextTick, computed } from "vue";
+import { defineProps, ref, nextTick, computed, watch } from "vue";
 import Swal from "sweetalert2";
 import editImg from "../assets/images/edit.svg";
 const props = defineProps({
@@ -8,6 +8,7 @@ const props = defineProps({
 
 const editing = ref(false);
 const editInput = ref(null);
+let taskLabel = props.task.label;
 
 const deleteTask = () => {
   Swal.fire({
@@ -41,19 +42,32 @@ const textLength = computed(() => {
   return props.task.label?.length * 10 ?? 40;
 });
 
+const swalConfirm = (taskMsg) => {
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: `Task: ${props.task.label} is completed.`,
+    showConfirmButton: false,
+    toast: true,
+    timer: 1500,
+  });
+};
+
 const taskCompeteToggle = () => {
   if (!props.task.deleted) {
     if (!props.task.completed) {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: `Task: ${props.task.label} is completed.`,
-        showConfirmButton: false,
-        toast: true,
-        timer: 1500,
-      });
+      swalConfirm(`Task: ${props.task.label} is completed.`);
     }
     props.task.completed = !props.task.completed;
+  }
+};
+
+const doneEdit = () => {
+  editing.value = false;
+
+  if (taskLabel !== props.task.label) {
+    swalConfirm(`Task: ${props.task.label} is edited.`);
+    taskLabel = props.task.label;
   }
 };
 </script>
@@ -82,9 +96,9 @@ const taskCompeteToggle = () => {
             { 'bg-transparent focus:outline-gray-300 ms-2': true },
           ]"
           :disabled="!editing"
-          v-model="task.label"
-          @keydown.enter="editing = false"
-          @focusout="editing = false"
+          v-model.trim="task.label"
+          @keydown.enter="doneEdit"
+          @focusout="doneEdit"
         />
       </span>
     </label>
@@ -104,7 +118,7 @@ const taskCompeteToggle = () => {
       </button>
 
       <button
-        v-show="!task.deleted"
+        v-show="!task.deleted & !task.completed"
         class="ms-1 bg-blue-300 hover:bg-blue-400 px-2 py-2 mt-1 border border-gray-400 rounded-lg shadow"
         @click="handleEdit"
       >
