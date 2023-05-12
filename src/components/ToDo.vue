@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, ref, nextTick, computed } from "vue";
+import Swal from "sweetalert2";
 import editImg from "../assets/images/edit.svg";
 const props = defineProps({
   task: Object,
@@ -9,8 +10,20 @@ const editing = ref(false);
 const editInput = ref(null);
 
 const deleteTask = () => {
-  const res = confirm("Are you sure to delete the task?");
-  if (res) props.task.deleted = true;
+  Swal.fire({
+    title: "Are you sure to delete the task?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      props.task.deleted = true;
+      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+    }
+  });
 };
 
 const handleEdit = () => {
