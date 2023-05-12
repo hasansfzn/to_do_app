@@ -21,7 +21,11 @@ const deleteTask = () => {
   }).then((result) => {
     if (result.isConfirmed) {
       props.task.deleted = true;
-      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      Swal.fire(
+        "Deleted!",
+        `Task - ${props.task.label} has been deleted.`,
+        "success"
+      );
     }
   });
 };
@@ -39,6 +43,16 @@ const textLength = computed(() => {
 
 const taskCompeteToggle = () => {
   if (!props.task.deleted) {
+    if (!props.task.completed) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Task: ${props.task.label} is completed.`,
+        showConfirmButton: false,
+        toast: true,
+        timer: 1500,
+      });
+    }
     props.task.completed = !props.task.completed;
   }
 };
