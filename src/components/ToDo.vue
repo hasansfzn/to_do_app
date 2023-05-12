@@ -109,7 +109,7 @@ const doneEdit = () => {
         v-show="!task.deleted"
         :class="[
           {
-            'ms-2 mt-1 bg-rose-300 hover:bg-rose-400 text-gray-700 font-semibold py-1 px-2 border border-gray-400 rounded-lg shadow text-s': true,
+            'ms-2 mt-1 bg-rose-400 hover:bg-rose-500 text-gray-700 font-semibold py-1 px-2 border border-gray-400 rounded-lg shadow text-s': true,
           },
         ]"
         @click="deleteTask"
