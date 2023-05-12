@@ -96,7 +96,7 @@ const doneEdit = () => {
             { 'bg-transparent focus:outline-gray-300 ms-2': true },
           ]"
           :disabled="!editing"
-          v-model.trim="task.label"
+          v-model.trim.lazy="task.label"
           @keydown.enter="doneEdit"
           @focusout="doneEdit"
         />

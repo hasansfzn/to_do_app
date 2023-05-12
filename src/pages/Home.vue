@@ -55,6 +55,7 @@ watchEffect(() => {
 watch(
   toDos,
   (newVal) => {
+    console.log(newVal);
     saveDataToLocal(newVal);
   },
   { deep: true }
@@ -83,7 +84,7 @@ const addTask = (name, tag) => {
   saveDataToLocal(toDos.value);
 };
 
-const hideList = ref(false);
+const hideList = ref(true);
 const toggleHideDeletedList = () => {
   hideList.value = !hideList.value;
 };
@@ -142,15 +143,6 @@ const toggleHideDeletedList = () => {
 }
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
-}
-
-.fade-button-enter-active,
-.fade-button-leave-active {
-  transition: opacity 0.6 ease;
-}
-.fade-button-enter-from,
-.fade-button-leave-to {
   opacity: 0;
 }
 </style>
