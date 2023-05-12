@@ -82,6 +82,8 @@ const addTask = (name, tag) => {
   });
   saveDataToLocal(toDos.value);
 };
+
+const hideList = ref(false);
 </script>
 
 <template>
@@ -103,7 +105,13 @@ const addTask = (name, tag) => {
       />
     </div>
     <div class="mt-4 pt-2">
-      <ToDoList :tasks="deletedTasks" title="Deleted Tasks" />
+      <ToDoList
+        v-if="!hideList"
+        :tasks="deletedTasks"
+        title="Deleted Tasks"
+        collapsible
+        @hideDeletedColumn="hideList = !hideList"
+      />
     </div>
   </section>
 </template>
