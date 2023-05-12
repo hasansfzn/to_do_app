@@ -32,7 +32,7 @@ const emit = defineEmits(["hideDeletedColumn"]);
   <section class="bg-slate-100 shadow-lg shadow-gray-500/50 p-3 rounded-lg">
     <div class="flex items-center">
       <h2 class="my-2 pb-3 font-bold text-gray-800 text-center">
-        {{ title }}
+        {{ title }} ({{ tasks.length }})
       </h2>
       <button
         v-if="collapsible"
